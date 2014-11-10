@@ -22,7 +22,6 @@
 
         init:function(id,callback){
             this.id = id;
-            console.log(11111);
             swfobject.embedSWF(
                 "swf/VPPLAS.swf",
                 id, "100%", "100%", "10.0.0","",

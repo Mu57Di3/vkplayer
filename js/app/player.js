@@ -1,7 +1,6 @@
 define(['screenfull.min','app/flash'],function () {
 
     var Application = function (id){
-        console.log(2222);
         var that = this;
         this.file = "http://cs12504v4.vk.me/u18666201/videos/dedab814de.720.mp4?extra=J4AHT2-kbIsofD2vZnu-BsEwqpcvQaVp5Zld7TJleU41Pffj-gXE0yscTxt63Ip6gypx05ivQRaUkJWpmEd8DxO2t0jxLUUA";
         //Добавляем флеш плеер
