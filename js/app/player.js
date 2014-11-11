@@ -1,8 +1,12 @@
 define(['screenfull.min','app/flash'],function () {
 
-    var Application = function (id){
+    var Application = function (id,file){
         var that = this;
-        this.file = "http://cs12504v4.vk.me/u18666201/videos/dedab814de.720.mp4?extra=J4AHT2-kbIsofD2vZnu-BsEwqpcvQaVp5Zld7TJleU41Pffj-gXE0yscTxt63Ip6gypx05ivQRaUkJWpmEd8DxO2t0jxLUUA";
+        this.file = file;
+
+        //получаем минимальнодоступное качество
+        var q = Object.keys(file.files);
+        this.curentQuality = String(q[0]).replace('mp4_','');
         //Добавляем флеш плеер
 
         this.display = MDP_SWF_Adapter;
@@ -14,12 +18,15 @@ define(['screenfull.min','app/flash'],function () {
 
     Application.prototype = {
         display:null,
+        curentQuality: 240,
+        file:null,
 
         _initGUI: function () {
             var that = this;
 
             $('#bPlay').one('click', function () {
-                that.play(that.file);
+                console.log(that.file.files['mp4_'+that.curentQuality]);
+                that.play(that.file.files['mp4_'+that.curentQuality]);
                 $(this).on('click', function () {
                     that.toglePlay();
                 });
@@ -34,41 +41,23 @@ define(['screenfull.min','app/flash'],function () {
         },
 
         play: function(file) {
-           /* if (this._swf) {
-                this._swf.startPlay(file);
-            } else {
-                this._getSWF();
-                this._swf.startPlay(file);
-            }*/
-
-            this.display.o.startPlay(this.file);
+            this.display.o.startPlay(file);
         },
 
         toglePlay:function (){
-            if (this._swf) {
-                this._swf.pp();
-            } else {
-                this._getSWF();
-                this._swf.pp();
-            }
+            this.display.o.pp();
         },
 
         volume: function(val){
-            if (this._swf) {
-                this._swf.volume(val);
-            } else {
-                this._getSWF();
-                this._swf.volume(val);
-            }
+            this.display.o.volume(val);
         },
 
         seek: function(val){
-            if (this._swf) {
-                this._swf.seek(val);
-            } else {
-                this._getSWF();
-                this._swf.seek(val);
-            }
+            this.display.o.seek(val);
+        },
+
+        chahgeQuality:function (){
+
         }
 
     }
