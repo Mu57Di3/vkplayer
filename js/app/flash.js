@@ -39,6 +39,15 @@
                 this._swf = swfobject.getObjectById(attributes.id);
             }
             return this._swf;
+        },
+
+        update:function(e){
+            $(this).trigger('adapter.progress',e);
+        },
+
+        stop:function(){
+            $(this).trigger('adapter.stop');
+            console.log('video complite');
         }
     };
 
