@@ -363,7 +363,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415825210879</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Добавленна возможность стиминга видео, поворот видео и отслеживание размеров и смещения точки вражения при ресайзе видео плеера">
+      <created>1415825243526</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1415825243526</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
