@@ -1,4 +1,5 @@
 define(['app/player'],function () {
+    var vctest;
     var file = {
         id: 157857876,
         owner_id: 18666201,
@@ -31,7 +32,33 @@ define(['app/player'],function () {
         repeat: 0
     };
 
+    var params = {
+        videos:'18666201_157857876',
+        access_token:'526d61b057c05f5b59f0de5ae1ace073b5bccd7c6d1d579d31fc4fc76ce61a2caeeb8b94ff41aa1bb5e89'
+    }
 
-    var vctest = new MDPlayer('altContent',file);
+    $.ajax({
+        url: 'https://api.vk.com/method/video.get',
+        data: params,
+        crossDomain: true,
+        dataType: 'jsonp',
+        type: 'get',
+        success: function(data) {
+            file = data.response[1];
+            console.log(file);
+            vctest = new MDPlayer('altContent',file);
+
+        },
+
+        error : function(XMLHttpRequest, textStatus, errorThrown) {
+            if (error != undefined){
+                error();
+            }
+            console.log('An Ajax error was thrown.');
+            console.log(XMLHttpRequest);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
 
 });
