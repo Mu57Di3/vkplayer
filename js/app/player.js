@@ -7,8 +7,15 @@ define(['screenfull.min','app/flash'],function () {
         //получаем минимальнодоступное качество
         var q = Object.keys(file.files);
         this.curentQuality = String(q[0]).replace('mp4_','');
-        //Добавляем флеш плеер
 
+        //Выводим заголовок и время
+        var min = Math.round(file.duration/60),
+            sec = file.duration%60;
+
+        $('#video_dutation').text(min+':'+sec);
+        $('#video_title').text(file.title);
+
+        //Добавляем флеш плеер
         this.display = MDP_SWF_Adapter;
 
         this.display.init(id,function (){
@@ -38,6 +45,11 @@ define(['screenfull.min','app/flash'],function () {
                     screenfull.toggle(document.getElementById('player_wrapper'));
                 }
             });
+
+            $(this.display).on('adapter.progress',function(e,a,b){
+                that.progress(a,b);
+
+            });
         },
 
         play: function(file) {
@@ -58,6 +70,11 @@ define(['screenfull.min','app/flash'],function () {
 
         chahgeQuality:function (){
 
+        },
+
+        progress:function(t,s){
+            var td = Math.round(t/this.file.duration*10000)/100;
+            $('.progress-bar').css('width',td+'%');
         }
 
     }
