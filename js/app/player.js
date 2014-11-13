@@ -30,6 +30,9 @@ define(['screenfull.min','app/flash'],function () {
         file:null,
         status:0,
 
+        _playerWrapper:null,
+        _player:null,
+
         STOP:0,
         PLAYED:1,
         PAUSED:2,
@@ -43,8 +46,11 @@ define(['screenfull.min','app/flash'],function () {
         _initGUI: function () {
             var that = this;
 
-            this.elH = String($('#player_wrapper').css('height')).replace('px','');
-            this.elW = String($('#player_wrapper').css('width')).replace('px','');
+            this._playerWrapper = $('#player_wrapper');
+            this._player = $('#swf_wrapper');
+
+            this.elH = String(this._playerWrapper.css('height')).replace('px','');
+            this.elW = String(this._playerWrapper.css('width')).replace('px','');
 
             this.dCP = Math.abs((this.elW/2)-(this.elH/2));
 
@@ -63,20 +69,20 @@ define(['screenfull.min','app/flash'],function () {
 
             //апдейтим размер плеера при изменении размера
             screenfull.onchange = function(){
-                that.elH = String($('#player_wrapper').css('height')).replace('px','');
-                that.elW = String($('#player_wrapper').css('width')).replace('px','');
+                that.elH = String(that._playerWrapper.css('height')).replace('px','');
+                that.elW = String(that._playerWrapper.css('width')).replace('px','');
 
                 that.dCP = Math.abs((that.elW/2)-(that.elH/2));
                 if (that.rotateAngle == 90 || that.rotateAngle == 270){
-                    $(that.display.o).css('width',$('#player_wrapper').css('height'));
-                    $(that.display.o).css('height',$('#player_wrapper').css('width'));
-                    $(that.display.o).css('top','-'+that.dCP+'px');
-                    $(that.display.o).css('left',that.dCP+'px');
+                    $(that._player).css('width',that.elH);
+                    $(that._player).css('height',that.elW);
+                    $(that._player).css('top','-'+that.dCP+'px');
+                    $(that._player).css('left',that.dCP+'px');
                 } else {
-                    $(that.display.o).css('width',$('#player_wrapper').css('width'));
-                    $(that.display.o).css('height',$('#player_wrapper').css('height'));
-                    $(that.display.o).css('top','0');
-                    $(that.display.o).css('left','0');
+                    $(that._player).css('width',that.elW);
+                    $(that._player).css('height',that.elH);
+                    $(that._player).css('top','0');
+                    $(that._player).css('left','0');
                 }
             }
 
@@ -167,37 +173,38 @@ define(['screenfull.min','app/flash'],function () {
         },
 
         rotate:function(){
-            var elH = 0, elW= 0, dCP = 0;
 
 
-            this.elH = String($('#player_wrapper').css('height')).replace('px','');
-            this.elW = String($('#player_wrapper').css('width')).replace('px','');
+
+            this.elH = String(this._playerWrapper.css('height')).replace('px','');
+            this.elW = String(this._playerWrapper.css('width')).replace('px','');
 
             this.dCP = Math.abs((this.elW/2)-(this.elH/2));
 
-            console.log(dCP);
+
 
             this.rotateAngle+=90;
             this.rotateAngle= this.rotateAngle ==360 ? 0 : this.rotateAngle;
+            
+
+
+            $(this._player).css('mozTransform','rotate('+this.rotateAngle+'deg)');
+            $(this._player).css('transform','rotate('+this.rotateAngle+'deg)');
+            $(this._player).css('webkitTransform','rotate('+this.rotateAngle+'deg)');
+            $(this._player).css('msTransform','rotate('+this.rotateAngle+'deg)');
+            $(this._player).css('oTransform','rotate('+this.rotateAngle+'deg)');
 
             if (this.rotateAngle == 90 || this.rotateAngle == 270){
-                $(this.display.o).css('width',$('#player_wrapper').css('height'));
-                $(this.display.o).css('height',$('#player_wrapper').css('width'));
-                $(this.display.o).css('top','-'+this.dCP+'px');
-                $(this.display.o).css('left',this.dCP+'px');
+                $(this._player).css('width',this.elH);
+                $(this._player).css('height',this.elW);
+                $(this._player).css('top','-'+this.dCP+'px');
+                $(this._player).css('left',this.dCP+'px');
             } else {
-                $(this.display.o).css('width',$('#player_wrapper').css('width'));
-                $(this.display.o).css('height',$('#player_wrapper').css('height'));
-                $(this.display.o).css('top','0');
-                $(this.display.o).css('left','0');
+                $(this._player).css('width',this.elW);
+                $(this._player).css('height',this.elH);
+                $(this._player).css('top','0');
+                $(this._player).css('left','0');
             }
-
-            $(this.display.o).css('mozTransform','rotate('+this.rotateAngle+'deg)');
-            $(this.display.o).css('transform','rotate('+this.rotateAngle+'deg)');
-            $(this.display.o).css('webkitTransform','rotate('+this.rotateAngle+'deg)');
-            $(this.display.o).css('msTransform','rotate('+this.rotateAngle+'deg)');
-            $(this.display.o).css('oTransform','rotate('+this.rotateAngle+'deg)');
-
 
         }
 
