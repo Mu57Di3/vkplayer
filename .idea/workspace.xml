@@ -62,8 +62,8 @@
       <file leaf-file-name="flash.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app/flash.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.078731" vertical-offset="0" max-vertical-offset="1122">
-              <caret line="54" column="40" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.69917744" vertical-offset="0" max-vertical-offset="1122">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -387,7 +387,13 @@
       <option name="project" value="LOCAL" />
       <updated>1415884060573</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Оптимизация и мелкие правки">
+      <created>1415884066704</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1415884066704</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -864,8 +870,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app/flash.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.078731" vertical-offset="0" max-vertical-offset="1122">
-          <caret line="54" column="40" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.69917744" vertical-offset="0" max-vertical-offset="1122">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding />
         </state>
       </provider>
