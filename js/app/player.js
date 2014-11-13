@@ -56,6 +56,19 @@ define(['screenfull.min','app/flash'],function () {
 
 
             console.log('INIT GUI');
+
+            //генерим кнопочки с качеством
+            var q = Object.keys(this.file.files),
+                cnt = q.length;
+            console.log(cnt);
+            for(var i=0;i<cnt;i++){
+                var qp = q[i].replace('mp4_','');
+                $('#b'+qp).on('click',function(e){
+                    that.chahgeQuality($(this).attr('q'));
+                });
+            }
+
+
             $('#bPlay').one('click', function () {
                 console.log(that.file.files['mp4_'+that.curentQuality]);
                 that.play(that.file.files['mp4_'+that.curentQuality]);
@@ -163,8 +176,21 @@ define(['screenfull.min','app/flash'],function () {
             this.status = this.PLAYED;
         },
 
-        chahgeQuality:function (){
+        chahgeQuality:function (val){
+            console.log(' Change Quality - '+val);
+            this.curentQuality = val;
+            var time =  this._getTime();
+            console.log(time);
+            if (this.status != this.STOP) {
+                this.display.o.changeQuality(this.file.files['mp4_' + val], time);
+            }
+        },
 
+        _getTime:function(){
+            var dpb = $('.progress-bar').css('width').replace('px',''),
+                pb = $('.progress').css('width').replace('px','');
+            console.log();
+            return Math.round(this.file.duration * (dpb/pb));
         },
 
         progress:function(t,s){
@@ -173,9 +199,6 @@ define(['screenfull.min','app/flash'],function () {
         },
 
         rotate:function(){
-
-
-
             this.elH = String(this._playerWrapper.css('height')).replace('px','');
             this.elW = String(this._playerWrapper.css('width')).replace('px','');
 
