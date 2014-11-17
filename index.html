@@ -115,7 +115,7 @@
         }
 
         .progress{
-            margin: 13px 100px 0 40px;
+            margin: 8px 120px 0 30px;
             height: 10px;
         }
 
@@ -123,6 +123,16 @@
             transition-duration: 0.15s;
         }
 
+        .btn{
+            padding: 2px;
+        }
+
+
+        #pSoundSlider{
+            display: inline-block;
+            width: 50px;
+
+        }
 
 
     </style>
@@ -148,6 +158,8 @@
     <div id="bpBottomPanel" class="button_panel">
         <a class="btn btn-link pull-left" id="bPlay"><i class="glyphicon glyphicon-play"></i></a>
         <div class="pull-right">
+        <button class="btn btn-link" id="bMute"><i class="glyphicon glyphicon-volume-up"></i></button>
+        <input id="pSoundSlider" type="range" min="0" max="100" value="80" autocomplete="off">
         <button class="btn btn-link" id="bFullScreen"><i class="glyphicon glyphicon-move"></i></button>
         <button class="btn btn-link" id="bRotate"><i class="glyphicon glyphicon-retweet"></i></button>
         </div>
