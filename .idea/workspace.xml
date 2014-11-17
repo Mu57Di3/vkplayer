@@ -461,7 +461,13 @@
       <option name="project" value="LOCAL" />
       <updated>1416247677913</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Регулятор громкости&#10;">
+      <created>1416247689003</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1416247689003</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
