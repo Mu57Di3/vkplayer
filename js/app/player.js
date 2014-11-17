@@ -38,6 +38,9 @@ define(['screenfull.min','app/flash'],function () {
         PAUSED:2,
 
         rotateAngle:0,
+        _soundSlider:null,
+
+        _oldVol:0,
 
         elH: 0,
         elW: 0,
@@ -57,6 +60,32 @@ define(['screenfull.min','app/flash'],function () {
 
             console.log('INIT GUI');
 
+            //Подключаем регулятор громкомсти
+
+            this._soundSlider = $('#pSoundSlider');
+            this._soundSlider.on('change',function(){
+                var vol = $(this).val();
+                that.volume(vol/100);
+                $('#bMute').find('i').removeClass('glyphicon-volume-off');
+                $('#bMute').find('i').addClass('glyphicon-volume-up');
+            });
+
+            $('#bMute').on('click',function (){
+                if (that._oldVol == 0){
+                    that.volume(0);
+                    that._oldVol = that._soundSlider.val();
+
+                    $(this).find('i').removeClass('glyphicon-volume-up');
+                    $(this).find('i').addClass('glyphicon-volume-off');
+                } else {
+                    that.volume(that._oldVol);
+                    that._oldVol = 0;
+                    $(this).find('i').removeClass('glyphicon-volume-off');
+                    $(this).find('i').addClass('glyphicon-volume-up');
+                }
+
+            });
+
             //генерим кнопочки с качеством
             var q = Object.keys(this.file.files),
                 cnt = q.length;
@@ -70,9 +99,11 @@ define(['screenfull.min','app/flash'],function () {
 
 
             $('#bPlay').one('click', function () {
+
                 console.log(that.file.files['mp4_'+that.curentQuality]);
                 that.play(that.file.files['mp4_'+that.curentQuality]);
                 that.status = that.PLAYED;
+                that.volume(0.8);
                 $(this).find('i.glyphicon ').addClass('glyphicon-pause');
                 $(this).on('click', function () {
                     that.toglePlay();
